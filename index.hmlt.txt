@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxury Home Banner</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+      :root {
+        --green-1: #0d6e42;
+        --green-2: #0a563b;
+        --green-3: #0f7f50;
+        --yellow: #f7c92a;
+        --yellow-2: #f0b719;
+        --cream: #fdfaf3;
+        --dark: #1b1b1b;
+        --card: #fffefc;
+        --shadow: rgba(28, 28, 28, 0.15);
+        --muted: #4e4e4e;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background: #f3efe9;
+      }
+
+      .luxury-banner {
+        max-width: 1500px;
+        margin: 30px auto;
+        background:
+          linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.15)),
+          url('https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+        border-radius: 26px;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 24px 70px rgba(0,0,0,0.12);
+      }
+
+      .luxury-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(255,255,255,0.08);
+      }
+
+      .inner {
+        position: relative;
+        z-index: 1;
+        padding: 20px 24px 0;
+      }
+
+      .brand-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .tag-pill {
+        background: linear-gradient(135deg, var(--green-1), var(--green-2));
+        color: white;
+        padding: 18px 22px;
+        border-radius: 18px 18px 18px 0;
+        width: 240px;
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+      }
+
+      .tag-pill::after {
+        content: "";
+        position: absolute;
+        right: -18px;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-top: 18px solid transparent;
+        border-bottom: 18px solid transparent;
+        border-left: 18px solid var(--green-2);
+      }
+
+      .tag-pill .small {
+        font-size: 1.5rem;
+        font-family: 'Baloo 2', cursive;
+        font-weight: 700;
+        line-height: 0.9;
+        color: #f7f5ee;
+      }
+
+      .tag-pill .small strong {
+        display: block;
+        font-size: 2.2rem;
+      }
+
+      .tag-pill .small .day {
+        display: block;
+      }
+
+      .brand-block {
+        flex: 1;
+        background: rgba(255, 250, 242, 0.9);
+        border: 6px solid rgba(247, 201, 42, 0.95);
+        border-radius: 30px 30px 18px 18px;
+        padding: 26px 28px 18px;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+        text-align: center;
+        position: relative;
+      }
+
+      .brand-block::before {
+        content: "";
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        top: 18px;
+        bottom: 18px;
+        border: 3px solid rgba(15, 110, 66, 0.12);
+        border-radius: 20px;
+      }
+
+      .brand-top {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .cart-badge {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #f7d64f, var(--yellow-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        box-shadow: inset 0 -8px 0 rgba(0,0,0,0.08);
+      }
+
+      .brand-name {
+        font-family: 'Baloo 2', cursive;
+        font-size: clamp(3rem, 5vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: -0.06em;
+        color: #0f7d4f;
+        text-transform: uppercase;
+        font-weight: 800;
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand-name span {
+        display: inline-block;
+        background: linear-gradient(180deg, #f5d24b, #ebb625);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: 0 10px 22px rgba(230, 181, 34, 0.2);
+      }
+
+      .brand-sub {
+        position: relative;
+        z-index: 1;
+        margin-top: 10px;
+        font-size: clamp(1.2rem, 2vw, 2.3rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--green-1);
+        background: rgba(247, 201, 42, 0.92);
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: 14px;
+        box-shadow: 0 8px 18px rgba(228,175,32,0.2);
+      }
+
+      .tagline {
+        text-align: center;
+        margin: 18px 0 14px;
+        font-family: 'Baloo 2', cursive;
+        font-size: clamp(1.6rem, 2.4vw, 3rem);
+        font-weight: 700;
+        color: var(--green-2);
+        background: rgba(255,255,255,0.78);
+        border-radius: 16px;
+        padding: 10px 16px;
+        display: inline-block;
+        margin-left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .category-wrap {
+        margin-top: 20px;
+        background: rgba(255,255,255,0.8);
+        border-radius: 26px 26px 0 0;
+        padding: 22px 20px 12px;
+        box-shadow: 0 -12px 30px rgba(0,0,0,0.04);
+      }
+
+      .categories {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(150px, 1fr));
+        gap: 18px;
+        align-items: stretch;
+        margin-top: 10px;
+      }
+
+      .cat {
+        text-align: center;
+        background: rgba(255,255,255,0.72);
+        border-radius: 18px;
+        padding: 18px 8px 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        min-height: 170px;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04);
+      }
+
+      .icon-bubble {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        color: white;
+        box-shadow: inset 0 -10px 18px rgba(0,0,0,0.1);
+      }
+
+      .icon-1 { background: linear-gradient(135deg, #ffb32f, #f48320); }
+      .icon-2 { background: linear-gradient(135deg, #1ea3ff, #0b74d6); }
+      .icon-3 { background: linear-gradient(135deg, #2fbf72, #159a53); }
+      .icon-4 { background: linear-gradient(135deg, #ff7e5f, #ff5d3a); }
+      .icon-5 { background: linear-gradient(135deg, #7f62ff, #5d49dc); }
+
+      .cat strong {
+        display: block;
+        font-size: 1rem;
+        line-height: 1.2;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: #1a2c22;
+      }
+
+      .bottom-bar {
+        background: linear-gradient(180deg, var(--green-3), var(--green-2));
+        display: grid;
+        grid-template-columns: repeat(5, minmax(170px, 1fr));
+        gap: 10px;
+        padding: 18px 20px 22px;
+        color: white;
+        align-items: center;
+      }
+
+      .metric {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        justify-content: center;
+        text-align: center;
+        line-height: 1.2;
+      }
+
+      .metric .mini {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.18);
+        border: 2px solid rgba(255,255,255,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .metric:last-child {
+        font-family: 'Baloo 2', cursive;
+        font-size: 1.8rem;
+        font-weight: 800;
+      }
+
+      .metric:last-child .mini {
+        background: rgba(247, 201, 42, 0.26);
+        color: var(--yellow);
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .categories {
+          grid-template-columns: repeat(2, minmax(160px, 1fr));
+        }
+
+        .bottom-bar {
+          grid-template-columns: repeat(2, minmax(170px, 1fr));
+        }
+      }
+
+      @media (max-width: 700px) {
+        .brand-row {
+          flex-direction: column;
+        }
+
+        .tag-pill {
+          width: 100%;
+          min-height: 100px;
+        }
+
+        .brand-block {
+          width: 100%;
+        }
+
+        .categories {
+          grid-template-columns: 1fr;
+        }
+
+        .bottom-bar {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="luxury-banner">
+      <div class="inner">
+        <div class="brand-row">
+          <div class="tag-pill">
+            <div class="small">
+              Good
+              <strong>Products</strong>
+              <span class="day">Brighter Days</span>
+            </div>
+          </div>
+
+          <div class="brand-block">
+            <div class="brand-top">
+              <div class="cart-badge">🛒</div>
+              <div class="brand-name"><span>O-A-IPETLA</span></div>
+            </div>
+
+            <div class="brand-sub">Street Vendor and Essentials</div>
+          </div>
+
+          <div class="tag-pill" style="background: linear-gradient(135deg, #1b4b3d, #0f7d4f);">
+            <div class="small" style="font-size:1.5rem;">
+              Support
+              <strong style="font-size:2.2rem;">Local</strong>
+              <span class="day">Shop Local</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tagline">Your Everyday Essentials, Closer to Home</div>
+
+        <div class="category-wrap">
+          <div class="categories">
+            <div class="cat">
+              <div class="icon-bubble icon-1">🥨</div>
+              <strong>Snacks &<br>Refreshments</strong>
+            </div>
+
+            <div class="cat">
+              <div class="icon-bubble icon-2">🥤</div>
+              <strong>Soft Drinks<br>& Beverages</strong>
+            </div>
+
+            <div class="cat">
+              <div class="icon-bubble icon-3">🏠</div>
+              <strong>Household<br>Essentials</strong>
+            </div>
+
+            <div class="cat">
+              <div class="icon-bubble icon-4">🛍️</div>
+              <strong>Daily<br>Convenience<br>Products</strong>
+            </div>
+
+            <div class="cat">
+              <div class="icon-bubble icon-5">🏪</div>
+              <strong>Vendor<br>Supplies</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="metric">
+            <div class="mini">👥</div>
+            <div>Community<br>Friendly</div>
+          </div>
+
+          <div class="metric">
+            <div class="mini">✓</div>
+            <div>Affordable<br>Prices</div>
+          </div>
+
+          <div class="metric">
+            <div class="mini">✔</div>
+            <div>Reliable<br>Service</div>
+          </div>
+
+          <div class="metric">
+            <div class="mini">✨</div>
+            <div>Quality Products<br>for Everyday Needs</div>
+          </div>
+
+          <div class="metric">
+            <div class="mini">💛</div>
+            <div>Together for<br>a Brighter Community</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
